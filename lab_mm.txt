@@ -1,0 +1,8 @@
+.model small
+.data 
+a db "HelloWorld$"
+.code
+MOV 
+
+
+
