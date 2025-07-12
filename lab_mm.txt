@@ -1,8 +1,27 @@
 .model small
-.data 
-a db "HelloWorld$"
+
+.data
+    msg db "HelloWorld$"
+
 .code
-MOV 
+    mov ax, @data
+    mov ds, ax
+    lea dx, msg
+    mov ah, 09h
+    int 21h
+    mov ah, 4Ch
+    int 21h
+end 
 
 
+output:-  
+Executable Command
+___________________________
+masm filename.asm 
+link filename. obj 
+filename 
+___________________________ 
 
+output:- 
+
+HelloWorld 
