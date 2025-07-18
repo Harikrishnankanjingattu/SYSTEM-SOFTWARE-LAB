@@ -1,3 +1,7 @@
+substrct using masm 
+
+
+
 .model small
 .data
         num1 db 5
