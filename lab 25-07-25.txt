@@ -1,0 +1,60 @@
+.model small
+
+.stack 100h
+
+.data
+        num1 dw   10
+        num2 dw 2
+        quotient dw ?
+        msg db 'Quotient is:$'
+              .model small
+
+.stack 100h
+
+.data
+        num1 dw   10
+        num2 dw 2
+        quotient dw ?
+        msg db 'Quotient is:$'
+              
+.code
+main:
+        MOV AX,@data
+        MOV DS,AX
+        lEA DX,MSG
+        MOV  AH,09H
+        INT 21H
+
+        MOV AX,num1
+        MOV BX, num2
+        XOR DX ,DX
+        DIV BX
+
+        ADD AL,'0'
+        MOV DL,AL
+        MOV AH,02H
+        INT 21H
+        MOV AH,4CH
+        INT 21H
+END main
+
+.code
+main:
+        MOV AX,@data
+        MOV DS,AX
+        lEA DX,MSG
+        MOV  AH,09H
+        INT 21H
+
+        MOV AX,num1
+        MOV BX, num2
+        XOR DX ,DX
+        DIV BX
+
+        ADD AL,'0'
+        MOV DL,AL
+        MOV AH,02H
+        INT 21H
+        MOV AH,4CH
+        INT 21H
+END main
