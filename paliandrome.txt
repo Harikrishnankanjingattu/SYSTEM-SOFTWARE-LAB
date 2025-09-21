@@ -1,0 +1,45 @@
+
+.model small
+.stack 100h 
+.data 
+	input db 100 dup('$')
+	prompt db ,"Enter the string $"
+	m1  db 13,10,"Is palindrome$",0
+	m2 db 13,10,"Is not palindrome$",0
+.code
+main:  		mov  ax, @data
+		mov ds,ax
+ 		lea dx,prompt
+ 		mov ah,09h
+ 		lea si,input
+ 		mov cx,0
+read_loo:	mov ah,01h
+ 		int 21h
+ 		cmp al,0Dh
+ 		je terminate_input
+ 		mov [si],al
+ 		inc si 
+ 		inc cx 
+ 		jmp read_loo
+terminate_input: mov byte ptr [si],'$'
+		mov si,0
+		mov di,cx
+		dec di
+check_loo:	cmp si,di
+		jge is_palin
+		mov al,input[si]
+		mov bl,input[di]
+		cmp al,bl
+		jne not_palin
+		inc si
+		dec di
+		jmp check_loo
+is_palin:	lea dx,m1
+		jmp print_result
+not_palin: 	lea dx,m2
+print_result:
+		mov ah,09h
+		int 21h
+		mov ah, 4Ch
+    		int 21h
+end main
